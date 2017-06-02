@@ -1,7 +1,11 @@
 import express from 'express';
+import WechatAPI from 'wechat-api';
 
 import User from '../../models/user';
 import Posts from '../../models/posts';
+import serverConfig from '../../config/server.json';
+
+const api = new WechatAPI(serverConfig.wechat.appid, serverConfig.wechat.appsecret);
 
 const router = express.Router();
 
@@ -33,16 +37,19 @@ router.post("/posts", (req, res) => {
 	let newPosts = new Posts({
 		posts: req.body
 	});
-	newPosts.save(function(err) {
-		if (!err) {
-			return res.json({ok: true});
-		} else {
-			return res.json({
-				ok: false,
-				error: err
-			});
-		}
-	})
-})
+	api.getFollowers((err, result) => {
+		console.log(result);
+	});
+	// newPosts.save(function(err) {
+	// 	if (!err) {
+	// 		return res.json({ok: true});
+	// 	} else {
+	// 		return res.json({
+	// 			ok: false,
+	// 			error: err
+	// 		});
+	// 	}
+	// });
+});
 
 export default router;
