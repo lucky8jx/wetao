@@ -12,6 +12,7 @@ router.get("/getUser", (req, res) => {
 });
 
 router.post("/isUserExist", (req, res) => {
+	res.header("Access-Control-Allow-Origin", "*");
 	const username = req.body.username;
 	console.log(username);
 	User.findOne({ username: username }, (err, user) => {
