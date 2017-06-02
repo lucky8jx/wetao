@@ -1,12 +1,13 @@
 import express from 'express';
 import wechat from 'wechat';
+import serverConfig from '../../config/server.json';
 
 const router = express.Router();
 
 const config = {
-  token: 'lucky8jx',
-  appid: 'wxe1f4b24c543e73ae',
-  encodingAESKey: 'ijbGf1KlAZ0O3HYkVE1lZ8IRVBeN5Zl4DJqii7IMeFc',
+  token: serverConfig.wechat.token,
+  appid: serverConfig.wechat.appid,
+  encodingAESKey: serverConfig.wechat.encodingAESKey,
   checkSignature: true
 };
 
