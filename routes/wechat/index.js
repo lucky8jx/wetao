@@ -12,7 +12,7 @@ const config = {
 
 router.use(express.query());
 
-router.get('/', wechat(config, (req, res, next) => {
+router.use('/', wechat(config, (req, res, next) => {
   const message = req.weixin;
   console.log(message);
   if (message.Content === 'diaosi') {
