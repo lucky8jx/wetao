@@ -14,7 +14,7 @@ router.use(express.query());
 
 router.get('/', wechat(config, (req, res, next) => {
   const message = req.weixin;
-  console.log(message.Content);
+  console.log(message);
   if (message.Content === 'diaosi') {
     res.reply('hehe')
   }
