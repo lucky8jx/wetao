@@ -6,7 +6,7 @@ const router = express.Router();
 const config = {
   token: 'lucky8jx',
   appid: 'wx34ee83a1a70a07f0',
-  // encodingAESKey: '123456abcdefg123456abcdefg123456abcdefg123456a',
+  encodingAESKey: 'ijbGf1KIAZ0O3HYkVE1Z8IRVBeN5ZI4DJqii7IMeFc',
   checkSignature: true
 };
 
