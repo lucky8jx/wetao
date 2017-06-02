@@ -54,7 +54,7 @@ class Preview extends Component {
 										key={index}
 										onClick={this.handleItemClick.bind(this, index)}>
 					<div style={{position: 'relative', width: '100%'}}>
-						<img src={value.url} className="img-responsive" alt="image" />
+						<img src={value.picurl} className="img-responsive" alt="image" />
 						<div style={titleStyle}>
 							<span>{value.title}</span>
 						</div>
@@ -73,7 +73,7 @@ class Preview extends Component {
 						</div>
 						<div className="media-right">
 							<img className="media-object"
-									src={value.url}
+									src={value.picurl}
 									alt="test"
 									style={{width: '85px'}} />
 						</div>

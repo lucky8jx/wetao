@@ -35,6 +35,7 @@
     "redux-logger": "^3.0.1",
     "redux-thunk": "^2.2.0",
     "wechat": "^2.1.0",
+    "wechat-api": "^1.32.1",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {

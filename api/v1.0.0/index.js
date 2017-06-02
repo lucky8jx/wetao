@@ -34,11 +34,23 @@ router.post("/isUserExist", (req, res) => {
 
 router.post("/posts", (req, res) => {
 	console.log(req.body);
+	let posts = req.body;
 	let newPosts = new Posts({
-		posts: req.body
+		posts: posts
 	});
 	api.getFollowers((err, result) => {
-		console.log(result);
+		if (err) {
+			return res.json({
+				error: 'some mistake happend on get followers'
+			});
+		} else {
+			const openids = result.data.openid;
+			openids.map((value) => {
+				api.sendNews(value, posts, (err, result) => {
+
+				})
+			})
+		}
 	});
 	// newPosts.save(function(err) {
 	// 	if (!err) {

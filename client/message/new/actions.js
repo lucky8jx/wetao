@@ -6,6 +6,7 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 
 export const TITLE_CHANGE = 'TITLE_CHANGE';
 export const DESCRIBE_CHANGE = 'DESCRIBE_CHANGE';
+export const URL_CHANGE = 'URL_CHANGE';
 export const IMAGE_CHANGE = 'IMAGE_CHANGE';
 
 export const ACTIVE_CHANGE = 'ACTIVE_CHANGE';
@@ -23,6 +24,14 @@ export const titleChange = (text, active) => {
 export const describeChange = (text, active) => {
 	return {
 		type: DESCRIBE_CHANGE,
+		text,
+		active
+	}
+};
+
+export const urlChange = (text, active) => {
+	return {
+		type: URL_CHANGE,
 		text,
 		active
 	}
@@ -49,8 +58,9 @@ export const addNewPost = () => {
 		type: ADD_NEW_POST,
 		newData: {
 			title: 'Your title',
-			describe: 'Your describe',
-			url: 'http://' + serverConfig.host + ':' + serverConfig.port + '/img/test.jpg',
+			description: 'Your describe',
+			url: 'http://aiketao168.com',
+			picurl: 'http://' + serverConfig.host + ':' + serverConfig.port + '/img/test.jpg',
 		}
 	}
 

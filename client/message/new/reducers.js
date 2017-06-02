@@ -3,7 +3,7 @@ import update from 'react-addons-update';
 
 import {
 	REQUEST_POSTS, RECEIVE_POSTS,
-	TITLE_CHANGE,DESCRIBE_CHANGE,IMAGE_CHANGE,
+	TITLE_CHANGE,DESCRIBE_CHANGE,URL_CHANGE,IMAGE_CHANGE,
 	ACTIVE_CHANGE,ADD_NEW_POST
 } from './actions';
 import serverConfig from '../../../config/server.json';
@@ -21,8 +21,9 @@ const changeActive = (state = 0, action) => {
 
 const post = (state = {
 	title: 'Your title',
-	describe: 'Your describe',
-	url: API_URL + '/img/test.jpg',
+	description: 'Your describe',
+	url: 'http://aiketao168.com',
+	picurl: API_URL + '/img/test.jpg',
 }, action) => {
 	switch(action.type) {
 		case TITLE_CHANGE:
@@ -31,11 +32,15 @@ const post = (state = {
 			});
 		case DESCRIBE_CHANGE:
 			return update(state, {
-				describe: {$set: action.text}
+				description: {$set: action.text}
+			});
+		case URL_CHANGE:
+			return update(state, {
+				url: {$set: action.text}
 			});
 		case IMAGE_CHANGE:
 			return update(state, {
-				url: {$set: action.url}
+				picurl: {$set: action.url}
 			});
 		default:
 			return state;
@@ -45,13 +50,15 @@ const post = (state = {
 const posts = (state = [
 	{
 		title: 'Your title',
-		describe: 'Your describe',
-		url: API_URL + '/img/test.jpg',
+		description: 'Your describe',
+		url: 'http://aiketao168.com',
+		picurl: API_URL + '/img/test.jpg',
 	}
 ], action) => {
 	switch (action.type) {
 		case TITLE_CHANGE:
 		case DESCRIBE_CHANGE:
+		case URL_CHANGE:
 		case IMAGE_CHANGE:
 			console.log('at reducer posts' + state);
 				return state.map((value, index) => {

@@ -4,7 +4,7 @@ import 'react-images-uploader/styles.css';
 import 'react-images-uploader/font.css';
 
 import { connect } from 'react-redux';
-import { titleChange, describeChange, imageChange } from './actions';
+import { titleChange, describeChange, urlChange, imageChange } from './actions';
 import serverConfig from '../../../config/server.json';
 
 const mapStateToProps = (state, ownProps) => {
@@ -28,6 +28,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 		onDescribeChange: (text, active) => {
 			dispatch(describeChange(text, active));
 		},
+		onUrlChange: (text, active) => {
+			dispatch(urlChange(text, active));
+		},
 		onImageChange: (url, active) => {
 			dispatch(imageChange(url, active));
 		}
@@ -42,6 +45,10 @@ class Edit extends Component {
 	}
 	handleDescribeChange(e) {
 		this.props.onDescribeChange(e.target.value, this.props.active);
+	}
+	handleUrlChange(e) {
+		console.log(e.target.value);
+		this.props.onUrlChange(e.target.value, this.props.active);
 	}
 	handleImageChange(url) {
 		this.props.onImageChange(url, this.props.active);
@@ -65,11 +72,23 @@ class Edit extends Component {
 					<label htmlFor="inputDes" className="col-sm-2 control-label">Describe</label>
 					<div className="col-sm-10">
 						<textarea onChange={this.handleDescribeChange.bind(this)}
-											value={this.props.post.describe}
+											value={this.props.post.description}
 						 					className="form-control"
 											id="inputDes"
 											placeholder="Describe"
 											rows="3"></textarea>
+					</div>
+				</div>
+				<div className="form-group">
+					<label htmlFor="inputUrl" className="col-sm-2 control-label">Title</label>
+					<div className="col-sm-10">
+						<input onChange={this.handleUrlChange.bind(this)}
+											value={this.props.post.url}
+											className="form-control"
+											id="inputUrl"
+											placeholder="url"
+											type="text"
+											/>
 					</div>
 				</div>
 				<div className="form-group">
@@ -80,7 +99,7 @@ class Edit extends Component {
 									url={uploadUrl}
 									optimisticPreviews
 									multiple={false}
-									image={this.props.post.url}
+									image={this.props.post.picurl}
 									onLoadEnd={(err, res) => {
 										console.log(res);
 										this.handleImageChange(res);

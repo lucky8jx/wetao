@@ -22046,8 +22046,15 @@ module.exports = traverseAllChildren;
 /***/ (function(module, exports) {
 
 module.exports = {
+	"ip": "127.0.0.1",
 	"host": "localhost",
-	"port": "3000"
+	"port": "3000",
+	"wechat": {
+		"appid": "wx34ee83a1a70a07f0",
+		"appsecret": "52d74a77fce393615a0b4fe8a270a6cb",
+		"token": "lucky8jx",
+		"encodingAESKey": "ijbGf1KlAZ0O3HYkVE1lZ8IRVBeN5Zl4DJqii7IMeFc"
+	}
 };
 
 /***/ }),

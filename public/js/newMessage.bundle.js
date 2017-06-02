@@ -23029,8 +23029,15 @@ module.exports = traverseAllChildren;
 /***/ (function(module, exports) {
 
 module.exports = {
+	"ip": "127.0.0.1",
 	"host": "localhost",
-	"port": "3000"
+	"port": "3000",
+	"wechat": {
+		"appid": "wx34ee83a1a70a07f0",
+		"appsecret": "52d74a77fce393615a0b4fe8a270a6cb",
+		"token": "lucky8jx",
+		"encodingAESKey": "ijbGf1KlAZ0O3HYkVE1lZ8IRVBeN5Zl4DJqii7IMeFc"
+	}
 };
 
 /***/ }),
@@ -24636,7 +24643,7 @@ module.exports = function(key){
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.addNewPost = exports.activeChange = exports.imageChange = exports.describeChange = exports.titleChange = exports.ADD_NEW_POST = exports.ACTIVE_CHANGE = exports.IMAGE_CHANGE = exports.DESCRIBE_CHANGE = exports.TITLE_CHANGE = exports.RECEIVE_POSTS = exports.REQUEST_POSTS = undefined;
+exports.addNewPost = exports.activeChange = exports.imageChange = exports.urlChange = exports.describeChange = exports.titleChange = exports.ADD_NEW_POST = exports.ACTIVE_CHANGE = exports.IMAGE_CHANGE = exports.URL_CHANGE = exports.DESCRIBE_CHANGE = exports.TITLE_CHANGE = exports.RECEIVE_POSTS = exports.REQUEST_POSTS = undefined;
 
 var _whatwgFetch = __webpack_require__(248);
 
@@ -24653,6 +24660,7 @@ var RECEIVE_POSTS = exports.RECEIVE_POSTS = 'RECEIVE_POSTS';
 
 var TITLE_CHANGE = exports.TITLE_CHANGE = 'TITLE_CHANGE';
 var DESCRIBE_CHANGE = exports.DESCRIBE_CHANGE = 'DESCRIBE_CHANGE';
+var URL_CHANGE = exports.URL_CHANGE = 'URL_CHANGE';
 var IMAGE_CHANGE = exports.IMAGE_CHANGE = 'IMAGE_CHANGE';
 
 var ACTIVE_CHANGE = exports.ACTIVE_CHANGE = 'ACTIVE_CHANGE';
@@ -24670,6 +24678,14 @@ var titleChange = exports.titleChange = function titleChange(text, active) {
 var describeChange = exports.describeChange = function describeChange(text, active) {
 	return {
 		type: DESCRIBE_CHANGE,
+		text: text,
+		active: active
+	};
+};
+
+var urlChange = exports.urlChange = function urlChange(text, active) {
+	return {
+		type: URL_CHANGE,
 		text: text,
 		active: active
 	};
@@ -24695,8 +24711,9 @@ var addNewPost = exports.addNewPost = function addNewPost() {
 		type: ADD_NEW_POST,
 		newData: {
 			title: 'Your title',
-			describe: 'Your describe',
-			url: 'http://' + _server2.default.host + ':' + _server2.default.port + '/img/test.jpg'
+			description: 'Your describe',
+			url: 'http://aiketao168.com',
+			picurl: 'http://' + _server2.default.host + ':' + _server2.default.port + '/img/test.jpg'
 		}
 	};
 };
@@ -29153,6 +29170,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 		onDescribeChange: function onDescribeChange(text, active) {
 			dispatch((0, _actions.describeChange)(text, active));
 		},
+		onUrlChange: function onUrlChange(text, active) {
+			dispatch((0, _actions.urlChange)(text, active));
+		},
 		onImageChange: function onImageChange(url, active) {
 			dispatch((0, _actions.imageChange)(url, active));
 		}
@@ -29178,6 +29198,12 @@ var Edit = function (_Component) {
 		key: 'handleDescribeChange',
 		value: function handleDescribeChange(e) {
 			this.props.onDescribeChange(e.target.value, this.props.active);
+		}
+	}, {
+		key: 'handleUrlChange',
+		value: function handleUrlChange(e) {
+			console.log(e.target.value);
+			this.props.onUrlChange(e.target.value, this.props.active);
 		}
 	}, {
 		key: 'handleImageChange',
@@ -29224,11 +29250,31 @@ var Edit = function (_Component) {
 						'div',
 						{ className: 'col-sm-10' },
 						_react2.default.createElement('textarea', { onChange: this.handleDescribeChange.bind(this),
-							value: this.props.post.describe,
+							value: this.props.post.description,
 							className: 'form-control',
 							id: 'inputDes',
 							placeholder: 'Describe',
 							rows: '3' })
+					)
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'form-group' },
+					_react2.default.createElement(
+						'label',
+						{ htmlFor: 'inputUrl', className: 'col-sm-2 control-label' },
+						'Title'
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'col-sm-10' },
+						_react2.default.createElement('input', { onChange: this.handleUrlChange.bind(this),
+							value: this.props.post.url,
+							className: 'form-control',
+							id: 'inputUrl',
+							placeholder: 'url',
+							type: 'text'
+						})
 					)
 				),
 				_react2.default.createElement(
@@ -29249,7 +29295,7 @@ var Edit = function (_Component) {
 								url: uploadUrl,
 								optimisticPreviews: true,
 								multiple: false,
-								image: this.props.post.url,
+								image: this.props.post.picurl,
 								onLoadEnd: function onLoadEnd(err, res) {
 									console.log(res);
 									_this2.handleImageChange(res);
@@ -29579,7 +29625,7 @@ var Preview = function (_Component) {
 						_react2.default.createElement(
 							'div',
 							{ style: { position: 'relative', width: '100%' } },
-							_react2.default.createElement('img', { src: value.url, className: 'img-responsive', alt: 'image' }),
+							_react2.default.createElement('img', { src: value.picurl, className: 'img-responsive', alt: 'image' }),
 							_react2.default.createElement(
 								'div',
 								{ style: titleStyle },
@@ -29614,7 +29660,7 @@ var Preview = function (_Component) {
 								'div',
 								{ className: 'media-right' },
 								_react2.default.createElement('img', { className: 'media-object',
-									src: value.url,
+									src: value.picurl,
 									alt: 'test',
 									style: { width: '85px' } })
 							)
@@ -29730,8 +29776,9 @@ var changeActive = function changeActive() {
 var post = function post() {
 	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
 		title: 'Your title',
-		describe: 'Your describe',
-		url: API_URL + '/img/test.jpg'
+		description: 'Your describe',
+		url: 'http://aiketao168.com',
+		picurl: API_URL + '/img/test.jpg'
 	};
 	var action = arguments[1];
 
@@ -29742,11 +29789,15 @@ var post = function post() {
 			});
 		case _actions.DESCRIBE_CHANGE:
 			return (0, _reactAddonsUpdate2.default)(state, {
-				describe: { $set: action.text }
+				description: { $set: action.text }
+			});
+		case _actions.URL_CHANGE:
+			return (0, _reactAddonsUpdate2.default)(state, {
+				url: { $set: action.text }
 			});
 		case _actions.IMAGE_CHANGE:
 			return (0, _reactAddonsUpdate2.default)(state, {
-				url: { $set: action.url }
+				picurl: { $set: action.url }
 			});
 		default:
 			return state;
@@ -29756,14 +29807,16 @@ var post = function post() {
 var posts = function posts() {
 	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [{
 		title: 'Your title',
-		describe: 'Your describe',
-		url: API_URL + '/img/test.jpg'
+		description: 'Your describe',
+		url: 'http://aiketao168.com',
+		picurl: API_URL + '/img/test.jpg'
 	}];
 	var action = arguments[1];
 
 	switch (action.type) {
 		case _actions.TITLE_CHANGE:
 		case _actions.DESCRIBE_CHANGE:
+		case _actions.URL_CHANGE:
 		case _actions.IMAGE_CHANGE:
 			console.log('at reducer posts' + state);
 			return state.map(function (value, index) {
