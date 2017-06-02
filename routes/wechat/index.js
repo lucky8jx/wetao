@@ -9,6 +9,7 @@ const config = {
   encodingAESKey: 'ijbGf1KlAZ0O3HYkVE1lZ8IRVBeN5Zl4DJqii7IMeFc',
   checkSignature: true
 };
+router.use(express.query());
 
 router.get('/', wechat(config, (req, res, next) => {
   const message = req.weixin;
