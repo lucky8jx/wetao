@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import update from 'react-addons-update';
 import 'whatwg-fetch';
+import serverConfig from '../../config/server.json';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://' + serverConfig.host + ':' + serverConfig.port;
 const API_HEADERS = {
 	'Content-Type': 'application/json'
 };
@@ -196,7 +197,7 @@ class Main extends Component {
 				feedbackStatus[i].groupClass = "has-error"
 			}
 		}
-		
+
 	}
 
 	render() {
@@ -278,8 +279,8 @@ class Main extends Component {
 						</div>
 						<div className="form-group">
 							<div className="col-sm-offset-2 col-sm-10">
-								<button type="submit" 
-										className="btn btn-default" 
+								<button type="submit"
+										className="btn btn-default"
 										disabled={submitFlag ? '' : 'disabled'}>
 									Sign up
 								</button>

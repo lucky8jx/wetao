@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import update from 'react-addons-update';
+import serverConfig from '../../config/server.json';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://' + serverConfig.host + ':' + serverConfig.port;
 const API_HEADERS = {
 	'Content-Type': 'application/json'
 };
@@ -52,7 +53,7 @@ class Main extends Component {
 		return (
 			<div>
 				<div className="container">
-					
+
 					<form style={{width: 400}} className="center-block form-horizontal" action="/logIn" method="post">
 						<div className="form-group">
 							<label htmlFor="email" className="col-sm-2 control-label">Email</label>
@@ -82,8 +83,8 @@ class Main extends Component {
 						</div>
 						<div className="form-group">
 							<div className="col-sm-offset-2 col-sm-10">
-								<button type="submit" 
-										className="btn btn-default" 
+								<button type="submit"
+										className="btn btn-default"
 										disabled={(this.state.inputValue.email && this.state.inputValue.password) ? '' : 'disabled'}>
 									Sign in
 								</button>

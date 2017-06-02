@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 385);
+/******/ 	return __webpack_require__(__webpack_require__.s = 386);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22042,7 +22042,15 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 212 */,
+/* 212 */
+/***/ (function(module, exports) {
+
+module.exports = {
+	"host": "localhost",
+	"port": "3000"
+};
+
+/***/ }),
 /* 213 */,
 /* 214 */,
 /* 215 */,
@@ -22076,7 +22084,8 @@ module.exports = traverseAllChildren;
 /* 243 */,
 /* 244 */,
 /* 245 */,
-/* 246 */
+/* 246 */,
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22248,7 +22257,7 @@ module.exports = update;
 
 
 /***/ }),
-/* 247 */
+/* 248 */
 /***/ (function(module, exports) {
 
 (function(self) {
@@ -22715,7 +22724,6 @@ module.exports = update;
 
 
 /***/ }),
-/* 248 */,
 /* 249 */,
 /* 250 */,
 /* 251 */,
@@ -22836,7 +22844,8 @@ module.exports = update;
 /* 366 */,
 /* 367 */,
 /* 368 */,
-/* 369 */
+/* 369 */,
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22852,7 +22861,7 @@ var _react = __webpack_require__(23);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Main = __webpack_require__(384);
+var _Main = __webpack_require__(385);
 
 var _Main2 = _interopRequireDefault(_Main);
 
@@ -22890,7 +22899,6 @@ var App = function (_Component) {
 exports.default = App;
 
 /***/ }),
-/* 370 */,
 /* 371 */,
 /* 372 */,
 /* 373 */,
@@ -22904,7 +22912,8 @@ exports.default = App;
 /* 381 */,
 /* 382 */,
 /* 383 */,
-/* 384 */
+/* 384 */,
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22920,11 +22929,15 @@ var _react = __webpack_require__(23);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactAddonsUpdate = __webpack_require__(246);
+var _reactAddonsUpdate = __webpack_require__(247);
 
 var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 
-__webpack_require__(247);
+__webpack_require__(248);
+
+var _server = __webpack_require__(212);
+
+var _server2 = _interopRequireDefault(_server);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22934,7 +22947,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var API_URL = 'http://localhost:3000';
+var API_URL = 'http://' + _server2.default.host + ':' + _server2.default.port;
 var API_HEADERS = {
 	'Content-Type': 'application/json'
 };
@@ -23301,7 +23314,7 @@ var Main = function (_Component) {
 exports.default = Main;
 
 /***/ }),
-/* 385 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23315,7 +23328,7 @@ var _reactDom = __webpack_require__(92);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _App = __webpack_require__(369);
+var _App = __webpack_require__(370);
 
 var _App2 = _interopRequireDefault(_App);
 

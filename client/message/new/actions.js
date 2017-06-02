@@ -1,4 +1,5 @@
 import fetch from 'whatwg-fetch';
+import serverConfig from '../../../config/server.json';
 
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
@@ -49,7 +50,7 @@ export const addNewPost = () => {
 		newData: {
 			title: 'Your title',
 			describe: 'Your describe',
-			url: 'http://localhost:3000/img/test.jpg',
+			url: 'http://' + serverConfig.host + ':' + serverConfig.port + '/img/test.jpg',
 		}
 	}
 

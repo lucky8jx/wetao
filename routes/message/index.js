@@ -1,8 +1,10 @@
 import express from 'express';
 import corsPrefetch from 'cors-prefetch-middleware';
 import imagesUpload from 'images-upload-middleware';
+import serverConfig from '../../config/server.json';
 
 const router = express.Router();
+const url = 'http://' + serverConfig.host + ':' + serverConfig.port + '/img';
 
 router.use(corsPrefetch);
 
@@ -15,7 +17,7 @@ router.get("/new", (req, res) => {
 
 router.post("/upload", imagesUpload(
 	'public/img',
-	'http://localhost:3000/img'
+	url
 ));
 
 export default router;

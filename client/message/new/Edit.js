@@ -5,6 +5,7 @@ import 'react-images-uploader/font.css';
 
 import { connect } from 'react-redux';
 import { titleChange, describeChange, imageChange } from './actions';
+import serverConfig from '../../../config/server.json';
 
 const mapStateToProps = (state, ownProps) => {
 	let post = {};
@@ -46,14 +47,14 @@ class Edit extends Component {
 		this.props.onImageChange(url, this.props.active);
 	}
 	render() {
-
+		let uploadUrl = 'http://' + serverConfig.host + ':' + serverConfig.port + '/message/upload';
 		return (
 			<form className="form-horizontal">
 				<div className="form-group">
 					<label htmlFor="inputTitle" className="col-sm-2 control-label">Title</label>
 					<div className="col-sm-10">
 						<textarea onChange={this.handleTitleChange.bind(this)}
-											defaultValue={this.props.post.title}
+											value={this.props.post.title}
 											className="form-control"
 											id="inputTitle"
 											placeholder="Title"
@@ -64,7 +65,7 @@ class Edit extends Component {
 					<label htmlFor="inputDes" className="col-sm-2 control-label">Describe</label>
 					<div className="col-sm-10">
 						<textarea onChange={this.handleDescribeChange.bind(this)}
-											defaultValue={this.props.post.describe}
+											value={this.props.post.describe}
 						 					className="form-control"
 											id="inputDes"
 											placeholder="Describe"
@@ -76,7 +77,7 @@ class Edit extends Component {
 					<div className="col-sm-10">
 						<p className="well">
 								<ImageUploader
-									url="http://localhost:3000/message/upload"
+									url={uploadUrl}
 									optimisticPreviews
 									multiple={false}
 									image={this.props.post.url}

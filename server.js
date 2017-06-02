@@ -20,7 +20,7 @@ const app = express();
 const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-mongoose.connect("mongodb://localhost:27017/wetao");
+mongoose.connect("mongodb://" + serverConfig.host + ":27017/wetao");
 setUpPassport();
 
 app.set("views", path.join(__dirname, "views"));

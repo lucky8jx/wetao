@@ -6,6 +6,9 @@ import {
 	TITLE_CHANGE,DESCRIBE_CHANGE,IMAGE_CHANGE,
 	ACTIVE_CHANGE,ADD_NEW_POST
 } from './actions';
+import serverConfig from '../../../config/server.json';
+
+const API_URL = 'http://' + serverConfig.host + ':' + serverConfig.port;
 
 const changeActive = (state = 0, action) => {
 	switch (action.type) {
@@ -19,7 +22,7 @@ const changeActive = (state = 0, action) => {
 const post = (state = {
 	title: 'Your title',
 	describe: 'Your describe',
-	url: 'http://localhost:3000/img/test.jpg',
+	url: API_URL + '/img/test.jpg',
 }, action) => {
 	switch(action.type) {
 		case TITLE_CHANGE:
@@ -43,7 +46,7 @@ const posts = (state = [
 	{
 		title: 'Your title',
 		describe: 'Your describe',
-		url: 'http://localhost:3000/img/test.jpg',
+		url: API_URL + '/img/test.jpg',
 	}
 ], action) => {
 	switch (action.type) {

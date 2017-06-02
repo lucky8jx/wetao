@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
+import serverConfig from '../../config/server.json';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://' + serverConfig.host + ':' + serverConfig.port;
 const API_HEADERS = {
 	'Content-Type': 'application/json'
 };

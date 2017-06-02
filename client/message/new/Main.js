@@ -4,6 +4,9 @@ import "whatwg-fetch";
 
 import Preview from './Preview';
 import Edit from './Edit';
+import serverConfig from '../../../config/server.json';
+
+const API_URL = 'http://' + serverConfig.host + ':' + serverConfig.port;
 
 const mapStateToProps = (state) => {
 	return state;
@@ -13,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		onSurePublish: (data) => {
 			console.log(data);
-			fetch('http://localhost:3000/api/v1.0.0/posts', {
+			fetch(API_URL + '/api/v1.0.0/posts', {
 				method: 'post',
 				headers: {
 					'Content-Type': 'application/json'
