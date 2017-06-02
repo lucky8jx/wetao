@@ -47,6 +47,6 @@ app.use("/message", message);
 app.use("/api/v1.0.0", jsonParser, apiV1);
 app.use("/wechat", wechat);
 
-app.listen(serverConfig.port, serverConfig.host, () => {
+app.listen(serverConfig.port, serverConfig.ip, () => {
 	console.log("Server started on port " + serverConfig.port);
 });
