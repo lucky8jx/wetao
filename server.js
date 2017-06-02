@@ -13,6 +13,7 @@ import routes from './routes';
 import message from './routes/message';
 import apiV1 from './api/v1.0.0';
 import setUpPassport from './common/setuppassport';
+import wechat from './routes/wechat';
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use(passport.session());
 app.use("/", urlencodedParser, routes);
 app.use("/message", message);
 app.use("/api/v1.0.0", jsonParser, apiV1);
+app.use("/wechat", wechat);
 
 app.listen(serverConfig.port, serverConfig.host, () => {
 	console.log("Server started on port " + serverConfig.port);

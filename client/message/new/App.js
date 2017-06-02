@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import Main from './Main';
 
@@ -11,19 +10,11 @@ class App extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return state;
-};
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		onAddClick: () => {
-			console.log("abc")
-		}
-	}
-};
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(App);
+// export default connect(
+// 	mapStateToProps,
+// 	mapDispatchToProps
+// )(App);
+
+export default App;

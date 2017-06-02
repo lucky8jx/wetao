@@ -16,7 +16,11 @@ const changeActive = (state = 0, action) => {
 	}
 };
 
-const post = (state = {}, action) => {
+const post = (state = {
+	title: 'Your title',
+	describe: 'Your describe',
+	url: 'http://localhost:3000/img/test.jpg',
+}, action) => {
 	switch(action.type) {
 		case TITLE_CHANGE:
 			return update(state, {
@@ -35,18 +39,29 @@ const post = (state = {}, action) => {
 	}
 }
 
-const posts = (state = [], action) => {
+const posts = (state = [
+	{
+		title: 'Your title',
+		describe: 'Your describe',
+		url: 'http://localhost:3000/img/test.jpg',
+	}
+], action) => {
 	switch (action.type) {
 		case TITLE_CHANGE:
 		case DESCRIBE_CHANGE:
 		case IMAGE_CHANGE:
-			return state.map((value, index) => {
-				if (action.active === index) {
-					post(value, action);
-				}
-			});
+			console.log('at reducer posts' + state);
+				return state.map((value, index) => {
+					console.log(index, action.active);
+					if (action.active === index) {
+						return post(value, action);
+					} else {
+						return value;
+					}
+				});
+
 		case ADD_NEW_POST:
-			return update(state, {$push: action.newData});
+			return update(state, {$push: [action.newData]});
 		default:
 			return state;
 	}

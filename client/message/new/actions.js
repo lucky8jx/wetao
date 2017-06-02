@@ -11,6 +11,7 @@ export const ACTIVE_CHANGE = 'ACTIVE_CHANGE';
 export const ADD_NEW_POST = 'ADD_NEW_POST';
 
 export const titleChange = (text, active) => {
+	console.log(text, active);
 	return {
 		type: TITLE_CHANGE,
 		text,
@@ -35,6 +36,21 @@ export const imageChange = (url, active) => {
 };
 
 export const activeChange = (active) => {
-	type: ACTIVE_CHANGE,
-	active
+	return {
+		type: ACTIVE_CHANGE,
+		active
+	}
+
 };
+
+export const addNewPost = () => {
+	return {
+		type: ADD_NEW_POST,
+		newData: {
+			title: 'Your title',
+			describe: 'Your describe',
+			url: 'http://localhost:3000/img/test.jpg',
+		}
+	}
+
+}

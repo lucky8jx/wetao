@@ -1,6 +1,7 @@
 import express from 'express';
 
 import User from '../../models/user';
+import Posts from '../../models/posts';
 
 const router = express.Router();
 
@@ -16,14 +17,31 @@ router.post("/isUserExist", (req, res) => {
 	User.findOne({ username: username }, (err, user) => {
 		if (err) { return next(err) }
 		if (user) {
-			return res.json({ 
+			return res.json({
 				ok: false,
-				error: 'user is already exist' 
+				error: 'user is already exist'
 			});
 		} else {
 			return res.json({ok : true})
 		}
 	});
 });
+
+router.post("/posts", (req, res) => {
+	console.log(req.body);
+	let newPosts = new Posts({
+		posts: req.body
+	});
+	newPosts.save(function(err) {
+		if (!err) {
+			return res.json({ok: true});
+		} else {
+			return res.json({
+				ok: false,
+				error: err
+			});
+		}
+	})
+})
 
 export default router;
